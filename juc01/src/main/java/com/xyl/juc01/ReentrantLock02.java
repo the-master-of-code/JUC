@@ -4,6 +4,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+//和synchronized一个很关键的区别，Lock类的锁可以按顺序唤醒指定的线程，通过Condition监视器即可
 public class ReentrantLock02 {
     public static void main(String[] args) {
         Cook cook = new Cook();

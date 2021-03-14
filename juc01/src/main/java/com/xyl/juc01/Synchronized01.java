@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 
-//1.上面这个时自己总结的，真不确定对错，但是看运行结果也有一定道理，因为notifyAll之后，通知的线程消费者等待后生产者直接进入等待完毕状态，跳过了被通知阶段
+//1.上面这个是自己总结的，真不确定对错，但是看运行结果也有一定道理，因为notifyAll之后，通知的线程消费者等待后生产者直接进入等待完毕状态，跳过了被通知阶段
 //notifyAll会直接通知所有可以获得锁的线程，由cpu调度，某个线程获得锁，若该线程不满足执行条件，线程等待，然后直接由cpu再从候选线程里挑出一个去判断执行条件
 //notify只会随机通知一个线程，然后该线程判断执行条件，要么等待wait释放锁，被其他线程获得，要么执行后通知其他线程
 
@@ -44,8 +44,8 @@ class Production02 {
         prod_num++;
         System.out.println(Thread.currentThread().getName()+"------>仓库里的货物还剩"+prod_num);
         System.out.println(Thread.currentThread().getName()+"------>通知消费者");
-//        this.notify();
-        this.notifyAll();
+        this.notify();
+//        this.notifyAll();
     }
     public synchronized void get(){
                 System.out.println(Thread.currentThread().getName()+"------>消费者被通知");
@@ -62,7 +62,7 @@ class Production02 {
         prod_num--;
         System.out.println(Thread.currentThread().getName()+"------>仓库里的货物还剩"+prod_num);
         System.out.println(Thread.currentThread().getName()+"------>通知生产者");
-//        this.notify();
-        this.notifyAll();
+        this.notify();
+//        this.notifyAll();
     }
 }
